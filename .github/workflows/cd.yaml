@@ -26,6 +26,10 @@ jobs:
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v2.0.3
 
+    - name: Display Azure CLI version
+      run: az --version
+      shell: bash
+
     - name: Azure CLI login
       uses: azure/login@v1
       with:
