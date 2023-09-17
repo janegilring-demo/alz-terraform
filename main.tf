@@ -6,7 +6,7 @@ module "alz-core" {
   root_parent_id   = data.azurerm_client_config.core.tenant_id
 
   deploy_corp_landing_zones    = true
-  deploy_online_landing_zones  = false
+  deploy_online_landing_zones  = true
   deploy_connectivity_resources = false # https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings
   deploy_core_landing_zones     = true
   deploy_identity_resources     = false
