@@ -18,11 +18,6 @@ variable "subscription_id_management" {
   type        = string
 }
 
-variable "subscription_id_landing_zone" {
-  description = "The identifier of the default Landing Zone Subscription. (e.g 00000000-0000-0000-0000-000000000000)|4|azure_subscription_id"
-  type        = string
-}
-
 variable "root_id" {
   description = "The root id is the identity for the root managment group and a prefix applied to all management group identities|5|azure_name"
   type        = string
