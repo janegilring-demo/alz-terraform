@@ -1,12 +1,12 @@
 name: Azure Landing Zone Continuous Delivery
-on: 
+on:
   workflow_dispatch:
 
 permissions:
       id-token: write
       contents: read
-      
-jobs: 
+
+jobs:
   plan:
     name: Plan with Terraform
     concurrency: alz-mgmt-plan
@@ -26,6 +26,13 @@ jobs:
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v2.0.3
 
+    - name: Azure CLI login
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
     - name: Terraform Init
       run: |
         terraform init \
@@ -33,7 +40,7 @@ jobs:
         -backend-config="storage_account_name=${{vars.BACKEND_AZURE_STORAGE_ACCOUNT_NAME}}" \
         -backend-config="container_name=${{vars.BACKEND_AZURE_STORAGE_ACCOUNT_CONTAINER_NAME}}" \
         -backend-config="key=terraform.tfstate"
-      
+
     - name: Terraform Plan
       run: terraform plan -out tfplan -input=false
 
@@ -80,6 +87,6 @@ jobs:
         -backend-config="storage_account_name=${{vars.BACKEND_AZURE_STORAGE_ACCOUNT_NAME}}" \
         -backend-config="container_name=${{vars.BACKEND_AZURE_STORAGE_ACCOUNT_CONTAINER_NAME}}" \
         -backend-config="key=terraform.tfstate"
-      
+
     - name: Terraform Apply
       run: terraform apply -input=false -auto-approve tfplan
