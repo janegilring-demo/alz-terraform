@@ -18,7 +18,7 @@ module "alz-core" {
   subscription_id_identity       = var.subscription_id_identity
   subscription_id_management     = var.subscription_id_management
 
-  library_path   = "${path.root}/lib" # https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions
+  #library_path   = "${path.root}/lib" # https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions
 
   default_tags = {
     "source" = "terraform"
